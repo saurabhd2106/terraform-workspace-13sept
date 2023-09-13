@@ -6,6 +6,13 @@ variable "rg-name" {
   
 }
 
+variable "rg-names" {
+
+    type = list(string)
+
+    default = [  "my_rg_2", "my_rg_3" ]
+}
+
 variable "location" {
 
     type = string
