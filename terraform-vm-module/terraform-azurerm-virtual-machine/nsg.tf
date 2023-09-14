@@ -3,6 +3,25 @@ resource "azurerm_network_security_group" "myterraformnsg" {
   location            = var.location
   resource_group_name = azurerm_resource_group.myterraformgroup.name
 
+  dynamic "security_rule" { 
+
+    for_each = var.inbound_ports
+    content {
+
+    name                       = security_rule.key
+    priority                   = security_rule.value.priority
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = security_rule.value.portNumber
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+
+    }
+    
+  }
+
   security_rule {
     name                       = "SSH"
     priority                   = 1001
@@ -10,7 +29,7 @@ resource "azurerm_network_security_group" "myterraformnsg" {
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range     = "21"
+    destination_port_range     = "22"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }

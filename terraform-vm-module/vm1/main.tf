@@ -15,4 +15,16 @@ module "vm1" {
   ssh_public_key = "ssh-key"
   ssh_key_resource_group = "ssh-key-rg"
 
+  inbound_ports = {
+    "ssh" = {
+      "portNumber" : 22
+      "priority" : 1000
+    }
+
+    "http" = {
+      "portNumber" : 80
+      "priority" : 1001
+    }
+  }
+
 }

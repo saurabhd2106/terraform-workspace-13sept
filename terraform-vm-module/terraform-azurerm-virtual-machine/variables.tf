@@ -39,6 +39,12 @@ variable "nsgname" {
   type = string
 }
 
+variable "inbound_ports" {
+
+  type = any
+  
+}
+
 variable "ssh_public_key" {
 
   type = string
