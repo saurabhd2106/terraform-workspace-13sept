@@ -15,6 +15,27 @@ module "vm1" {
   ssh_public_key = "ssh-key"
   ssh_key_resource_group = "ssh-key-rg"
 
+  subnets =  {
+    "public_subnet" = {
+        address_prefixes = ["10.0.1.0/24"]
+    }
+
+    "private_subnet" = {
+      address_prefixes = ["10.0.2.0/24"]
+    }
+  }
+
+  nic = {
+    "my_nic" = {
+      "ip_configuration" = {
+        "name" = "myNicConfiguration"
+        "private_ip_address_allocation" = "Dynamic"
+        "subnet" = "public_subnet"
+
+      }
+    }
+  }
+
   inbound_ports = {
     "ssh" = {
       "portNumber" : 22

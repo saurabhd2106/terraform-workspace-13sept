@@ -1,12 +1,15 @@
 resource "azurerm_network_interface" "myterraformnic" {
-  name                = var.nicName
-  location            = var.location
+
+  for_each = var.nic
+
+  name                = each.key
+  location            = azurerm_resource_group.myterraformgroup.location
   resource_group_name = azurerm_resource_group.myterraformgroup.name
 
   ip_configuration {
-    name                          = "myNicConfiguration"
-    subnet_id                     = azurerm_subnet.myterraformsubnet.id
-    private_ip_address_allocation = "Dynamic"
+    name                          = each.value.ip_configuration.name
+    subnet_id                     = azurerm_subnet.myterraformsubnet[each.value.ip_configuration.subnet].id
+    private_ip_address_allocation = each.value.ip_configuration.private_ip_address_allocation
     public_ip_address_id          = azurerm_public_ip.myterraformpublicip.id
   }
 
@@ -15,6 +18,6 @@ resource "azurerm_network_interface" "myterraformnic" {
 
 # Connect the security group to the network interface
 resource "azurerm_network_interface_security_group_association" "example" {
-  network_interface_id      = azurerm_network_interface.myterraformnic.id
+  network_interface_id      = azurerm_network_interface.myterraformnic["my_nic"].id
   network_security_group_id = azurerm_network_security_group.myterraformnsg.id
 }

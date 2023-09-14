@@ -14,6 +14,16 @@ variable "vnetName" {
   type = string
 }
 
+variable "subnets" {
+
+  type = map(object({
+
+    address_prefixes = list(string)
+
+  }))
+  
+}
+
 variable "subnetName" {
   type = string
 }
@@ -41,7 +51,10 @@ variable "nsgname" {
 
 variable "inbound_ports" {
 
-  type = any
+  type = map(object({
+    portNumber = number
+    priority = number
+  }))
   
 }
 
@@ -54,5 +67,11 @@ variable "ssh_public_key" {
 variable "ssh_key_resource_group" {
 
   type = string
+  
+}
+
+variable "nic" {
+
+  type = any
   
 }

@@ -2,7 +2,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   name                  = var.virtualMachineName
   location              = var.location
   resource_group_name   = azurerm_resource_group.myterraformgroup.name
-  network_interface_ids = [azurerm_network_interface.myterraformnic.id]
+  network_interface_ids = [azurerm_network_interface.myterraformnic["my_nic"].id]
   size                  = var.diskSize
 
   os_disk {
