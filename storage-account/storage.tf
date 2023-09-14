@@ -23,11 +23,11 @@ resource "azurerm_storage_container" "example" {
 
 resource "random_string" "random_suffix" {
 
-    length = 8
-    special = false
-    lower = true
-    upper = false
-  
+  length  = 8
+  special = false
+  lower   = true
+  upper   = false
+
 }
 
 locals {

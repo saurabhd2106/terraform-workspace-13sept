@@ -1,47 +1,47 @@
 variable "rg-name" {
 
-    type = string
+  type = string
 
-    description = "This is the name of resource group"
-  
+  description = "This is the name of resource group"
+
 }
 
 variable "rg-names" {
 
-    type = list(string)
+  type = list(string)
 
-    default = [  "my_rg_2", "my_rg_3" ]
+  default = ["my_rg_21", "my_rg_31"]
 }
 
 variable "location" {
 
-    type = string
+  type = string
 
-    default = "West Europe"
+  default = "West Europe"
 
-    description = "This is a variable for location"
-  
+  description = "This is a variable for location"
+
 }
 
 variable "location_ws" {
 
-    type = map
+  type = map(any)
 
-    default = {
-        dev = "West Europe"
-        prod = "East Europe"
-    }
+  default = {
+    dev  = "West Europe"
+    prod = "East Europe"
+  }
 
-    description = "This is a variable for location"
-  
+  description = "This is a variable for location"
+
 }
 
 variable "tags" {
 
-    type = map(any)
+  type = map(any)
 
-    default = {
-      "env" : "test"
-    }
+  default = {
+    "env" : "test"
+  }
 
 }
