@@ -1,6 +1,6 @@
 module "mystorageaccount" {
 
-  source = "./terraform_azurerm_storage_account"
+  source = "./terraform-azurerm-storage-account"
 
   storage_account_details = {
     name = "saurabhstorage"

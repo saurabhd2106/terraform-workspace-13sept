@@ -23,6 +23,19 @@ variable "location" {
   
 }
 
+variable "location_ws" {
+
+    type = map
+
+    default = {
+        dev = "West Europe"
+        prod = "East Europe"
+    }
+
+    description = "This is a variable for location"
+  
+}
+
 variable "tags" {
 
     type = map(any)
