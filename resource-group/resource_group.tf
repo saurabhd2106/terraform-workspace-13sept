@@ -1,7 +1,7 @@
 resource "azurerm_resource_group" "myRg" {
 
   name     = var.rg-name
-  location = lookup(var.location_ws, terraform.workspace)
+  location = "saurabh-rg-1"
 
   tags = var.tags
 
