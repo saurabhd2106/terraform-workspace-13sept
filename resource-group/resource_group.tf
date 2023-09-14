@@ -1,7 +1,7 @@
 resource "azurerm_resource_group" "myRg" {
 
   name     = var.rg-name
-  location = "saurabh-rg-1"
+  location = "West Europe"
 
   tags = var.tags
 
